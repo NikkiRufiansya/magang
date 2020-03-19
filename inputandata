@@ -1,0 +1,74 @@
+{
+	"select":["id","firstname","lastname","gender","status","city","address","phone","created_at"],
+	"limit":"10",
+	"conditions":[
+	{
+		"type":"whereColumn",
+		"data":["firstname","=","lastname"]
+	},
+	{
+		"type":"whereNull",
+		"data":["gender"]
+	},
+	{
+		"type":"whereNotIn",
+		"data":["status","Banned","Loss"]
+	},
+	{
+		"type":"whereIn",
+		"data":["status","Active","Pending"]
+	},
+	{
+		"type":"whereNotBetween",
+		"data":["id","1","20"]
+	},
+	{
+		"type":"whereBetween",
+		"data":["id","30","50"]
+	},
+	{
+		"type":"orWhere",
+		"data":["id","<>","22"]	
+	},
+	{
+		"type":"orWhere",
+		"function":[
+		{
+			"type":"whereNotIn",
+			"data":["status","Banned","Loss"]
+		},
+		{
+			"type":"whereIn",
+			"data":["status","Active","Pending"]
+		}
+		]
+	},
+	{
+		"current_page":1
+	},
+	{
+		"order":[
+			{
+				"field":"name",
+				"order":"desc"
+			},
+			{
+				"field":"date",
+				"order":"desc"
+			}
+			]
+	}
+	]	
+}
+
+		// $query = DB::table('pengguna')->get();
+        // $query = DB::table('pengguna')->whereColumn($data_condition[0],$data_condition[1],$data_condition[2])->get();
+        // $query = DB::table('pengguna')->whereNull($data_condition[0])->get();
+        // $query = DB::table('pengguna')->whereNotIn($data_condition[0],[$data_condition[1],$data_condition[2]])->get();
+        // $query = DB::table('pengguna')->whereIn($data_condition[0],[$data_condition[1],$data_condition[2]])->get();
+        // $query = DB::table('pengguna')->whereNotBetween($data_condition[0],[$data_condition[1],$data_condition[2]])->get();    
+        // $query = DB::table('pengguna')->whereBetween($data_condition[0],[$data_condition[1],$data_condition[2]])->get();  
+        // $query = DB::table('pengguna')->orWhere($data_condition[0],$data_condition[1],$data_condition[2])->get();
+        // $query = DB::table('pengguna')->paginate($current_page);
+        // $query = DB::table('pengguna')->orderBy('firstname', 'desc')->get();
+        // $query = DB::table('pengguna')->orderBy('created_at', 'desc')->get();
